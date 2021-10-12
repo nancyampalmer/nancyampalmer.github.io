@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title> 10-05 Javascript Homework </title>
+        <link rel="stylesheet" href="/styles.css"/>
+
+    </head>
+
+    <body>
+        <h1 id="title" >Hellow Username </h1>
+        <script>
+            
+            var myNumber = 42;
+            // Add a comment here by doing "command + /"
+            // Spit out a number
+            console.log(myNumber);
+
+            myNumber = myNumber + 10;
+
+            console.log(myNumber);
+
+            // Spit out a string 
+            var myString = "JavaScript is Cool!";
+
+            console.log("D3 and " + myString);
+
+            // Boolean variables example 
+            var myNumber = 5;
+            
+            var bigNumber = myNumber > 100;
+
+            console.log(bigNumber);
+
+            // Array variables --> remember, arrays start counting at 0
+            // you can print out many multiple things, add comma in between brackets 
+            
+            var myArray = ["one", "two", "three", "four"];
+            console.log(myArray[3], myArray[2]);
+            
+            // Object variables 
+
+            var myObject = {
+                name:"Dave",
+                color: "red",
+                haspet: true
+            };
+
+            console.log(myObject.color, myObject.haspet)
+
+            var myObject2 = {
+                name:"Nancy",
+                color: "blue",
+                haspet: false
+
+            };
+            var objectArray = myObject, myObject2;
+            console.log(objectArray[1]);
+            
+            // function variable remember --> it will not execute until we tell it to.
+            // trigger an alert when we tell it to  
+            var sayText = function(txt) {
+                alert("Hello " + txt + "!");
+            };
+
+            var plusTen= function(num) {
+                return num + 10;
+            };
+            var thirty = plusTen(20);
+
+            console.log(thirty);
+
+            // Conditionals 
+
+            if (myNumber > 10) {
+                console.log("greater than 10!");
+                
+            }
+            else 
+            { (myNumber < 10)
+                console.log("Sorry...smaller than 10!");
+            }
+            
+            // document is html object - Document access
+            
+            document.getElementById("title").innerHTML = "Nancy";
+
+
+
+        </script>
+    </body>
+</html>
