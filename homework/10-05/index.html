@@ -11,9 +11,16 @@
     <body>
         <p>Click the button to display the time.</p>
 
-<button onclick="getElementById('time').innerHTML=Date()">What time is it?</button>
+    <button onclick="getElementById('time').innerHTML=Date()">What time is it?</button>
 
-<p id="time"></p>
+    <p id="time"></p>
+
+<script>
+     function myFunction(){
+        var myTime = document.getElementById("time");
+        myTime.style.backgroundColor = "blue";
+           };
+</script>
         
     </body>
 </html>
