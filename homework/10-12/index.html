@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        
+        <meta charset="utf-8"/>
+        <title> 10-12 D3 homework </title>
+        <script src="https://d3js.org/d3.v4.min.js"></script>
+
+    </head>
+
+    <body>
+        <h1 style="font-size:36px; font-family:ITC American Typewriter;"  id="theOffice"> The Office: Michael Scott and 'that's what she said' jokes by season </h1>
+       <div>
+        <div class="gifContainer" style="float:left" width="300px" height="170px" padding="50px">
+            <img src="thatswhatshesaid-steve.gif" alt="Michael making 'That's what she said joke' during 'Sexual Harrassment' episode"/>
+        </div>
+        <br>
+            <svg id= "squares-viz" width="300" height="175" padding ="25px"></svg>
+
+        <br>
+        <div class="buttons" style="float:bottom"> 
+            <button onclick="drawSquares(season1)"> Season 1</button>
+            <button onclick="drawSquares(season2)"> Season 2</button>
+            <button onclick="drawSquares(season3)"> Season 3</button>
+            <button onclick="drawSquares(season4)"> Season 4</button>
+            <button onclick="drawSquares(season5)"> Season 5</button>
+            <button onclick="drawSquares(season6)"> Season 6</button>
+            <button onclick="drawSquares(season7)"> Season 7</button>
+            <button onclick="drawSquares(season8)"> Season 8</button>
+            <button onclick="drawSquares(season9)"> Season 9</button>
+        </div>
+
+        <script>
+
+            var season1 = [
+                    {character: "Michael",value: 0},
+                    ];
+                var season2 = [
+                    {character: "Michael", value: 7},
+                    ];
+                var season3 = [
+                    {character: "Michael", value: 5},
+                    ];
+                var season4 = [
+                    {character: "Michael", value: 10},
+                    ];
+                var season5 = [
+                    {character: "Michael", value: 5},
+                    ];
+                var season6 = [
+                    {character: "Michael", value: 4},
+                    ];
+                var season7 = [
+                    {character: "Michael", value: 4},
+                    ];
+                var season8 = [
+                    {character: "Michael", value: 0},
+                    ];
+                var season9 = [
+                    {character: "Michael", value: 1},
+                ];
+            
+    
+        function drawSquares(dataArray) {
+    
+            var squares = d3.select("#squares-viz").selectAll("rect")
+                .data(dataArray, function(d) {
+                    return d.character
+                });
+          
+              // Entering Squares
+            squares.enter().append("rect")
+                .attr("fill","steelblue")
+                .attr("y", "0")
+                .attr("x", "100")
+                // .attr("height", "29")
+                // .attr("width", "0")
+                // .attr("height", "0")
+                .transition().duration(500)
+                    .attr("width", (d) => d.value*15)
+                    . attr("height", (d) => d.value*15) 
+        
+            squares.enter().append("text")
+                .attr("class", "character")
+                .text(function(d){
+                    return d.character;
+                })
+                .attr("x", "90")
+                .attr("y", "13")
+                .attr("font-family", "sans-serif")
+                .attr("font-size", "14px")
+                .attr("fill", "black")
+                .attr("font-weight", "bold")
+                .attr("text-anchor", "end");
+                
+          // Updating Squares
+          squares
+            .data(dataArray, function update() {
+              d3.selectAll("rect")
+            })
+            .attr("width", "0")
+            .transition().duration(500)
+                .attr("height", (d) => d.value*15) 
+                .attr("width", (d) => d.value*15)
+    
+        // Exiting Squares
+            squares.exit()
+                .transition().duration(1000)
+                .attr("width", "0")
+                .remove()
+    
+            };
+    
+      </script>
+
+    </body>
+</html>
