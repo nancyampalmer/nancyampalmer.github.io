@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title> ARTG5330 Final Project </title>
+        <script src="https://d3js.org/d3.v4.min.js"></script>
+    </head>
+    <body>
+        Nancy Palmer
+        <br/>
+        ARTG5330: Visualization Technologies 1
+        <br/>
+        <br/>
+        <b> NYT Best Seller List History (2008 - 2021)</b>
+        <br/>
+        <br/>
+        Details on the data from this API can be found <a href= "https://developer.nytimes.com/docs/books-product/1/routes/lists/best-sellers/history.json/get"> here</a>
+
+    <script>
+        var url= "https://api.nytimes.com/svc/books/v3/lists/best-sellers/history.json?api-key=XjGqUZ5qWbFrGE0M9fAKIA7EzegjT7CH";
+
+        d3.json(url, function(error, data) {
+            console.log(data);
+          });
+
+    </script>    
+
+
+
+
+        <!-- To-do's
+        Figure out how to access API
+        Figure out how long it takes to load CSV
+        Pick which dataset/approach to use
+        Figure out how to load into Javascript using D3
+        Identify narrative/visualizations
+    -->
+        
+    </body>
+</html>
