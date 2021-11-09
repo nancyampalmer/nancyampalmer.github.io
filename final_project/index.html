@@ -16,25 +16,13 @@
         <br/>
         Details on the data from this API can be found <a href= "https://developer.nytimes.com/docs/books-product/1/routes/lists/best-sellers/history.json/get"> here</a>
 
-    <script>
-        var url= "https://api.nytimes.com/svc/books/v3/lists/best-sellers/history.json?api-key=XjGqUZ5qWbFrGE0M9fAKIA7EzegjT7CH";
+        <script>
 
-        d3.json(url, function(error, data) {
-            console.log(data);
-          });
+            d3.csv("bestsellers.csv", function(error, data) {
+                console.log(data);
+                });
 
-    </script>    
+        </script>    
 
-
-
-
-        <!-- To-do's
-        Figure out how to access API
-        Figure out how long it takes to load CSV
-        Pick which dataset/approach to use
-        Figure out how to load into Javascript using D3
-        Identify narrative/visualizations
-    -->
-        
     </body>
 </html>
