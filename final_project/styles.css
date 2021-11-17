@@ -1,0 +1,127 @@
+body {
+    margin: 0;
+    background: black; 
+    height: 100%;
+    overflow: hidden;
+
+  }
+
+  #sidebar {
+    height: 100%;
+    width: 300px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color:white;
+    overflow-x: hidden;
+    padding: 30px 40px 10px 40px;
+
+}
+
+
+  h1 {
+    font-family: Georgia, 'Times New Roman', Times, serif;  
+    font-size: 26px; 
+    line-height:32px;
+    padding-bottom:50px;
+      }
+
+  h2 {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 16px;
+    line-height:20px;
+  }    
+
+  h2::first-letter{
+    font-family: "NYTfont";
+    color: black;
+    font-size: 3em;
+    float: left;
+    padding-top: 8px;
+    padding-right: 6px;
+    padding-left: 3px;
+
+  }
+
+  h2::first-line {
+    line-height: 100%;
+
+  }
+
+  @font-face {
+    font-family: 'NYTfont';
+    src:url('engraversoldenglishbt-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+#Container {
+    border:1px solid white; 
+    border-collapse: collapse;
+    margin-top:50px;
+    margin-left:400px;
+}
+
+.lColumn {
+  width: 500px;
+  padding: 20px;
+}
+
+#viz {
+  border: 1px solid white;
+  height: 500px;
+  width: 650px;
+}
+
+#toggle {
+  border: 1px solid white;
+  height: 20px;
+  width: 125px;
+  color: white;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+@font-face {
+  font-family: 'HNthin';
+  src: url('HelveticaNeue-Thing.otf') format('.otf');
+
+}
+
+#sidebar p {
+  font-family:'HNthin','Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 14px;
+  font-weight: 100;
+  line-height: 18px;
+
+}
+
+.rSidebar {
+  vertical-align:top;
+  padding-top:78px;
+
+}
+
+.rSidebar p {
+  color: white;
+  padding: 40px 60px 0px 40px;
+  font-family:'HNthin','Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 14px;
+  font-weight: 100;
+  line-height: 18px;
+
+}
+
+.legend{
+  border: 1px solid white;
+  height: 150px;
+  width: 225px;
+  margin-left: 40px;
+  margin-top: 0px;
+  font-style: color= white;
+
+  /* padding: 40px 60px 40px 40px;  */
+}
