@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="https://unpkg.com/topojson@3"></script>
+    <style>
+        body
+            {margin: 0};
+    </style>
+  </head>
+  <body>
+
+    <!-- this is the svg container that will hold the visualization. The map is inside a group inside the svg -->
+    <svg id="viz">
+        <rect id="ocean"  x="0" y="0" fill="cornflowerblue" />
+        <g id="map"></g>
+    </svg>
+
+    <script>
+        
+        var width = window.innerWidth
+        var height = window.innerHeight
+
+        // setting up references in which we'll plug things into (dom elemeents)
+
+        var svg = d3.select("#viz")
+            .attr("width", width)
+            .attr("height", height);
+
+        svg.select("#ocean")
+            .attr("width", width)
+            .attr("height", height);
+        
+        var map = svg.select("#map")
+        
+        d3.json("/world-alpha3.json", function (error, world) {
+            console.log(world);
+
+        var geoJSON = topojson.feature(world, world.objects.countries)
+            console.log(geoJSON);
+
+            geoJSON.features = geoJSON.features.filter(function(d) {
+            return d.id !== "ATA";
+        });
+
+            var proj = d3.geoMercator()
+            .fitSize([width, height], geoJSON);
+        // path generator, will use projection value and return pixel values. 
+        // Provide latitudes and longitudes, map to pixel values.
+        // filter out id = for Antartica
+        
+
+        var path = d3.geoPath()
+            .projection(proj);
+        
+            // hey map group, select all paths inside of you and apply features array as data
+        var countries = map.selectAll("path")
+            .data(geoJSON.features);
+
+        // all countries, append a path, and set d attribute to path function
+        countries.enter().append("path")
+            .attr("d", path)
+            .attr("fill", "green")
+            .attr("stroke", "cornflowerblue")
+            .attr("stroke-width", ".5")
+            .attr("vector-effect", "non-scaling-stroke")
+        
+        var points = [
+            {"name": "Boston", "coords": [-71.0589, 42.3601]},
+            {"name": "London", "coords": [-0.1278, 51.5074]}
+];
+        // select all circles and pull in points data from above. 
+        // Function will run twice for each row
+        // Look through data and find coords
+        // translate circle x + y to the coordinates
+        // string concatenation
+        var dots = map.selectAll("circle")
+            .data(points);
+
+        dots.enter().append("circle")
+            .attr("transform", function(d){
+              return "translate(" + proj(d.coords) + ")";
+            })
+            .attr("r", 5)
+            .attr("fill", "red");
+        
+        var zoom = d3.zoom()
+            .translateExtent([[0, 0], [width, height]])
+            // how much do you want users to be able to zoom in? Allow them to zoom in 8x 
+            .scaleExtent([1, 8]) 
+            .on("zoom", zoomed);
+
+            function zoomed() {
+            map.attr("transform", d3.event.transform);
+            }
+            // if they click anywhere on the svg, I want zoom function to happen 
+            // (calling the zoomed function on the container)
+            svg.call(zoom);
+        });
+    </script>
+
+  </body>
+</html>
