@@ -9,29 +9,47 @@
     
     <body>
 
-        <div id="sidebar">
-             
-            <h1> Partisan politics sells </br>...sometimes</h1> 
-            <h2> Which books topped the New York Times political best sellers list around the 2012 and 2016 Presidential elections?</h2>
-            <br/>
-            <p>
-            In addition to being considered the foremost source on best-selling books in the United States, there is a lot of mystery on the data that informs which books end up on the list. Regardless, the list offers a peak behind the curtain to what America wants to know.
-            <br/><br/> Explore the data to get a sense of which authors and what type of book makes the cut as the country navigates times of polarization.   
-            </p>
+        <div id="Container">
+
+            <div id="sidebar">
+                
+                <h1> Partisan politics sells </br>...sometimes</h1> 
+                <h2> Which books topped the New York Times political best sellers list around the 2012 and 2016 Presidential elections?</h2>
+                <br/>
+                <p>
+                In addition to being considered the foremost source on best-selling books in the United States, there is a lot of mystery on the data that informs which books end up on the list. Regardless, the list offers a peak behind the curtain to what America wants to know.
+                <br/><br/> Explore the data to get a sense of which authors and what type of book makes the cut as the country navigates times of polarization.   
+                </p>
+
+            </div>
+
+            <div id="content">
+
+                <div id="dataViz">
+                    <div class="toggle"> TOGGLE </div>
+                    <svg id="viz"></svg>
+                </div>
+                <div class="descr">
+                    <div class="descrContent">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ut enim sit amet turpis elementum tristique at in mauris. Etiam egestas nulla vel leo dictum eleifend. Aenean ac gravida leo. 
+                            Phasellus sed justo rutrum, iaculis orci vel, fringilla nisi. </p>
+                    </div>
+
+            </div>
 
         </div>
 
-        <table id="Container" >
+        <!-- <table id="Container" >
             <tr> 
                 <td class=lColumn>
-                    <svg id= "toggle">toggle here</svg>
+                    <div id= "toggle">toggle here</div>
                     <br/>
-                    <svg id="viz"></svg>
+                    <div id="viz"></div>
                 </td>
                 
                 <td class="rSidebar"> 
                     <div> 
-                        <svg class="legend"> legend goes here </svg>
+                        <div class="legend"> legend goes here </div>
                     </div>
                     <div class="descr">
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ut enim sit amet turpis elementum tristique at in mauris. Etiam egestas nulla vel leo dictum eleifend. Aenean ac gravida leo. 
@@ -39,7 +57,7 @@
                     </div>
                 </td>
             </tr>
-        </table>
+        </table> -->
 
 
         <script>
