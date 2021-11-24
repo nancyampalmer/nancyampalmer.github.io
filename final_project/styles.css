@@ -21,11 +21,11 @@ body {
 }
 
 #Container {
-  border:3px solid white; 
+  /* border:3px solid white;  */
   display: flex;
   width: 100%;
   height: 100vh;
-  color: white;
+  /* color: white; */
   /* justify-content: center; */
   /* border-collapse: collapse; */
   /* margin: 50px; */
@@ -33,7 +33,7 @@ body {
 }
 
 #dataViz {
-  border: 1px solid red;
+  /* border: 1px solid red; */
   flex: 4;
   justify-content: center;
   display: flex;
@@ -42,7 +42,7 @@ body {
 }
 
 #content {
-  border: 3px solid gold;
+  /* border: 3px solid gold; */
   display: flex;
   flex: 4;
 }
@@ -65,10 +65,9 @@ body {
 }
 
 #toggle {
-  border: 2px solid hotpink;
-  height: 50px;
-  width: 50px;
-  margin: 10px;
+  border: 1px solid white;
+  height: 25px;
+  width: 125px;
 }
 
 
