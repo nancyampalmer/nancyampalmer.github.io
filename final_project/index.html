@@ -42,8 +42,37 @@
         <script>
 
             d3.csv("bestsellers.csv", function(error, data) {
+            
+            var newRank = data.forEach(function(d) {
+                 d.rank = parseFloat(d.rank)
+            });
+
+            var weeks = data.forEach(function(d){
+                d.weeks_on_list = parseFloat(d.weeks_on_list)
+            });
+            
+            var parseDate = d3.timeParse("%m/%d/%y");
+            var newDate = data.forEach(function (d){
+                d.published_date = parseDate(d.published_date)
+            });
                 console.log(data);
                 });
+
+            // var data = ???;
+
+            // var newRank = data.forEach(function(d) {
+            //      d.rank = parseFloat(d.rank)
+            // });
+
+            // var weeks = data.forEach(function(d){
+            //     d.weeks_on_list = parseFloat(d.weeks_on_list)
+            // });
+            
+            // var parsedDate = d3.timeParse("%m/%d/%y");
+            // var newDate = data.forEach(function (d){
+            //     d.published_date = parseDate(d.published_date)
+            // });
+            
 
         </script>    
         
