@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="utf-8"/>
-        <title> Partisan Politics sells </title>
+        <title> Reading America </title>
         <script src="https://d3js.org/d3.v4.min.js"></script>
         <link rel="stylesheet" href="styles.css"/>
     </head>
@@ -13,12 +13,12 @@
 
             <div id="sidebar">
                 
-                <h1> Partisan politics sells...sometimes</h1> 
+                <h1> Reading America </h1> 
                 <h2> Which books topped the New York Times political best sellers list around the 2012 and 2016 Presidential elections?</h2>
                 <br/>
                 <p>
-                In addition to being considered the foremost source on best-selling books in the United States, there is a lot of mystery on the data that informs which books end up on the list. Regardless, the list offers a peak behind the curtain to what America wants to know.
-                <br/><br/> Explore the data to get a sense of which authors and what type of book makes the cut as the country navigates times of polarization.   
+                The NYT bestsellers list is considered the foremost source on best-selling books in the United States. Despite some the mystery surrounding the data that informs which books end up on the list, the list offers a peak behind the curtain to what America wants to know.
+                <br/><br/> Explore the data to get a sense of the authors, stories, and national narratives that capture the nation's attention as the country navigates times of polarization that are national elections.   
                 </p>
 
             </div>
@@ -26,37 +26,101 @@
             <div id="content">
 
                 <div id="dataViz">
-                    <div id="toggle"></div>
-                    <svg id="viz"></svg>
+                    
+                    <div id="chartTitle">
+                        <h2> Top 5 Bestselling NYT Hardcover Nonfiction Books </h2>
+                        <p> This visualization depicts those books that made the weekly list in the 3 months preceding and following the 2012 and 2016 elections.  </p>
+                        <div id="toggle">
+                            <button class="year-button" type="button" > 2012 </button>
+                            <button class="year-button" type="button" > 2016 </button>
+                        </div>
+                    </div>
+                    
+                    <svg id="chart">
+                        <g id="marks"></g>
+                        <g id="labels"></g>
+                        <g id="x"></g>
+                        <g id="y"></g>
+                    </svg>
                 </div>
                 <div class="descr">
+                    
                     <div class="descrContent">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ut enim sit amet turpis elementum tristique at in mauris. Etiam egestas nulla vel leo dictum eleifend. Aenean ac gravida leo. 
-                            Phasellus sed justo rutrum, iaculis orci vel, fringilla nisi. </p>
+                        <p> In 2012, Laura HillenBrand's "Unbroken" and political commenter Bill O'Reilly's "Killing Lincoln" continued their dominate march on the list in 2012, while JD Vance's "Hillbilly Elegy" started to gain momentum in 2016. 
+                            In a rare feat, Bill O'Reilly - who produced about a book a year during the early 2000s - claimed both the number one and two spots on the list at the end of 2012, likely reflecting . <br> <br> In lead up to the elections in both years, right-wing politilcal commenter Dinesh D'Souza releases "Obama's America" and "Hillary's America," 
+                            arguing that President Obama is the "architecht of American decline" and warning of "disaster" if Hillary Clinton is elected. Political strategists Dick Morris and Eileen McGann also offer a game plan to defeat Clinton in their top-selling book "Armageddon". 
+                            In general, these  are short-lived and are replaced by books covering a diverse breadth of topics - from race to singer autobiographies."     </p>
                     </div>
 
             </div>
 
         </div>
+        
+        <script src="./viz.js"></script>
 
         <script>
 
             d3.csv("bestsellers.csv", function(error, data) {
             
-            var newRank = data.forEach(function(d) {
-                 d.rank = parseFloat(d.rank)
-            });
-
-            var weeks = data.forEach(function(d){
-                d.weeks_on_list = parseFloat(d.weeks_on_list)
-            });
-            
-            var parseDate = d3.timeParse("%m/%d/%y");
-            var newDate = data.forEach(function (d){
-                d.published_date = parseDate(d.published_date)
-            });
-                console.log(data);
+                var parseDate = d3.timeParse("%m/%d/%y");
+                data.forEach(function(d) {
+                    d.rank = parseFloat(d.rank);
+                    d.weeks_on_list = parseFloat(d.weeks_on_list);
+                    d.published_date = parseDate(d.published_date);
                 });
+                
+                console.log(data);
+
+                var playInterval;
+
+                function showYear(year) {
+
+                    clearInterval(playInterval);
+
+                    var currentYearData = data.filter(function(d) {
+                        return d.published_date.getFullYear() === year || d.published_date.getFullYear() === year + 1;
+                    });
+
+                    var maxWeeks = d3.max(currentYearData, function (d){
+                        return d.weeks_on_list
+                    });
+
+                    var firstWeek = currentYearData[0].published_date;
+
+                    var currentWeekData = data.filter(function(d) {
+                        return +d.published_date === +firstWeek;
+                    });
+
+                    drawBars(currentWeekData, maxWeeks);
+
+                    playInterval = setInterval(function() {
+
+                        firstWeek = new Date(firstWeek.setDate(firstWeek.getDate() + 7));
+
+                        var currentWeekData = data.filter(function(d) {
+                            return +d.published_date === +firstWeek;
+                        });
+
+                        if (currentWeekData.length) {
+                            drawBars(currentWeekData, maxWeeks);
+                        }
+                        else {
+                            clearInterval(playInterval);
+                        }
+
+                    }, 1500);
+
+                }
+
+                d3.selectAll(".year-button")
+                    .on("click", function() {
+                        var buttonYear = parseFloat(this.innerText);
+                        showYear(buttonYear);
+                    });
+
+                showYear(2012);
+
+            });
 
             // var data = ???;
 
@@ -75,8 +139,6 @@
             
 
         </script>    
-        
-        <script src="./viz.js"></script>
     
     </body>
 </html>
